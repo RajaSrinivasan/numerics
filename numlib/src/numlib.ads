@@ -1,10 +1,11 @@
 with Ada.Text_IO; use Ada.Text_IO;
 with Ada.Containers.Vectors;
 
+generic
+   type RealType is digits <> ;
 -- codemd: begin segment=Core caption=basic core definitions
 package numlib is
 
-   subtype RealType is Float;
    eps : constant RealType := 0.000_1;
    type RealArray is array (Integer range <>) of RealType;
    package RealVectors_Pkg is new Ada.Containers.Vectors (Natural, RealType);

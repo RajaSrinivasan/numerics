@@ -16,7 +16,7 @@ package body numlib.statistics is
       procedure Uniform (c : Cursor) is
          r : constant Float := GNAT.Random_Numbers.Random (Gen);
       begin
-         Replace_Element (result, To_Index (c), low + span * r);
+         Replace_Element (result, To_Index (c), low + span * RealType(r));
       end Uniform;
    begin
       result.Set_Length (Ada.Containers.Count_Type (length));
@@ -30,9 +30,9 @@ package body numlib.statistics is
    is
       result : Vector;
       procedure Normal (c : Cursor) is
-         g : constant RealType := GNAT.Random_Numbers.Random_Gaussian (Gen);
+         g : constant Float := GNAT.Random_Numbers.Random_Gaussian (Gen);
       begin
-         Replace_Element (result, To_Index (c), g * stdev + mean);
+         Replace_Element (result, To_Index (c), RealType(g) * stdev + mean);
       end Normal;
    begin
       result.Set_Length (Ada.Containers.Count_Type (length));
@@ -102,7 +102,7 @@ package body numlib.statistics is
       use Ada.Numerics.Elementary_Functions;
       result : constant RealType := variance (v);
    begin
-      return Sqrt (result);
+      return RealType(Sqrt (Float(result)));
    end stdev;
 
    function Cor (v1, v2 : Vector) return CorrelationCoefficientType is

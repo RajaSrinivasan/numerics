@@ -48,7 +48,7 @@ package body numlib is
    function Create (length : Natural; low, high : RealType) return Vector is
       result : Vector            := Create (length);
       val    : RealType          := low;
-      vdelta : constant RealType := (high - low) / Float (length - 1);
+      vdelta : constant RealType := (high - low) / RealType (length - 1);
    begin
       for idx in 0 .. length - 1 loop
          result.Replace_Element (idx, val);

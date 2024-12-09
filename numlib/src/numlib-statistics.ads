@@ -1,3 +1,4 @@
+generic
 package numlib.statistics is
 
    function Uniform
